@@ -17,6 +17,10 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 
+app.get("/", (req, res) => {
+  res.send("API StudySync funcionando correctamente");
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor ejecutándose en puerto ${PORT}`);
 });
