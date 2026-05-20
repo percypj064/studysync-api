@@ -12,7 +12,7 @@ router.get("/buscar/:materia", (req, res) => {
   const materiaBuscada = req.params.materia.toLowerCase();
 
   const resultados = grupos.filter(g =>
-    g.materia.toLowerCase() === materiaBuscada
+    g.materia.toLowerCase().includes(materiaBuscada)
   );
 
   if (resultados.length === 0) {
@@ -23,7 +23,6 @@ router.get("/buscar/:materia", (req, res) => {
 
   res.status(200).json(resultados);
 });
-
 router.get("/:id", (req, res) => {
   const grupo = grupos.find(g => g.id == req.params.id);
 
