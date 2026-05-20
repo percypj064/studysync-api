@@ -19,6 +19,8 @@ PUT /api/grupos/:id
 
 DELETE /api/grupos/:id
 
+GET /api/grupos/buscar/:materia
+
 ## Ejecutar proyecto
 
 ```bash
