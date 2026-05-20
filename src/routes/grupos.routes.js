@@ -7,6 +7,23 @@ router.get("/", (req, res) => {
   res.status(200).json(grupos);
 });
 
+router.get("/buscar/:materia", (req, res) => {
+
+  const materiaBuscada = req.params.materia.toLowerCase();
+
+  const resultados = grupos.filter(g =>
+    g.materia.toLowerCase() === materiaBuscada
+  );
+
+  if (resultados.length === 0) {
+    return res.status(404).json({
+      mensaje: "No se encontraron grupos"
+    });
+  }
+
+  res.status(200).json(resultados);
+});
+
 router.get("/:id", (req, res) => {
   const grupo = grupos.find(g => g.id == req.params.id);
 
