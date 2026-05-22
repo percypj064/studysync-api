@@ -3,10 +3,34 @@ const router = express.Router();
 
 const grupos = require("../data/grupos");
 
+/**
+ * @swagger
+ * /api/grupos:
+ *   get:
+ *     summary: Obtener todos los grupos
+ *     responses:
+ *       200:
+ *         description: Lista de grupos
+ */
 router.get("/", (req, res) => {
   res.status(200).json(grupos);
 });
 
+/**
+ * @swagger
+ * /api/grupos/buscar/{materia}:
+ *   get:
+ *     summary: Obtener grupos por materia
+ *     parameters:
+ *       - in: path
+ *         name: materia
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Lista de grupos por materia
+ */
 router.get("/buscar/:materia", (req, res) => {
 
   const materiaBuscada = req.params.materia.toLowerCase();
@@ -23,6 +47,22 @@ router.get("/buscar/:materia", (req, res) => {
 
   res.status(200).json(resultados);
 });
+
+/**
+ * @swagger
+ * /api/grupos/{id}:
+ *   get:
+ *     summary: Obtener grupo por ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Grupo encontrado
+ */
 router.get("/:id", (req, res) => {
   const grupo = grupos.find(g => g.id == req.params.id);
 
@@ -35,6 +75,15 @@ router.get("/:id", (req, res) => {
   res.status(200).json(grupo);
 });
 
+/**
+ * @swagger
+ * /api/grupos:
+ *   post:
+ *     summary: Crear un nuevo grupo
+ *     responses:
+ *       201:
+ *         description: Grupo creado correctamente
+ */
 router.post("/", (req, res) => {
   const { nombre, materia, integrantes } = req.body;
 
@@ -56,6 +105,21 @@ router.post("/", (req, res) => {
   res.status(201).json(nuevoGrupo);
 });
 
+/**
+ * @swagger
+ * /api/grupos/{id}:
+ *   put:
+ *     summary: Actualizar un grupo
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Grupo actualizado correctamente
+ */
 router.put("/:id", (req, res) => {
   const grupo = grupos.find(g => g.id == req.params.id);
 
@@ -74,6 +138,21 @@ router.put("/:id", (req, res) => {
   res.status(200).json(grupo);
 });
 
+/**
+ * @swagger
+ * /api/grupos/{id}:
+ *   delete:
+ *     summary: Eliminar un grupo
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Grupo eliminado correctamente
+ */
 router.delete("/:id", (req, res) => {
   const index = grupos.findIndex(g => g.id == req.params.id);
 
