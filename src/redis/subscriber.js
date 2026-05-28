@@ -1,5 +1,6 @@
-require("dotenv").config;
+require("dotenv").config();
 
+console.log("REDIS URL:");
 console.log(process.env.REDIS_URL);
 
 const Redis = require("ioredis");
