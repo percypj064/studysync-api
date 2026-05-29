@@ -133,6 +133,19 @@ router.get("/:id", async (req, res) => {
  * /api/grupos:
  *   post:
  *     summary: Crear un nuevo grupo
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nombre:
+ *                 type: string
+ *               materia:
+ *                 type: string
+ *               integrantes:
+ *                 type: integer
  *     responses:
  *       201:
  *         description: Grupo creado correctamente
@@ -194,6 +207,19 @@ router.post("/", async (req, res) => {
  *         required: true
  *         schema:
  *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nombre:
+ *                 type: string
+ *               materia:
+ *                 type: string
+ *               integrantes:
+ *                 type: integer
  *     responses:
  *       200:
  *         description: Grupo actualizado correctamente
